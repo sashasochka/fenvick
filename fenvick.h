@@ -19,6 +19,14 @@ class FenvickTree {
   std::function<T(T, T)> f;
   std::function<T(T, T)> f_inv;
 
+  T query(int r) {
+    int next = (r & (r+1)) - 1;
+    if (next < 0)
+      return tree[r];
+    else
+      return f(tree[r], query(next));
+  }
+  
  public:
   FenvickTree(const std::vector<T>& data,
       std::function<T(T, T)> f     = std::plus <T>(),
@@ -37,13 +45,6 @@ class FenvickTree {
         FenvickTree(std::vector<T>(n, val), f, f_inv) {
   }
 
-  T query(int r) {
-    int next = (r & (r+1)) - 1;
-    if (next < 0)
-      return tree[r];
-    else
-      return f(tree[r], query(next));
-  }
 
   T get(int l, int r) {
     if (l == 0)
