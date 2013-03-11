@@ -5,4 +5,3 @@ Here is implemented  fenvick tree class in header file and provided example of u
 
 Notes: 
  * used C++11
- * performed static checker using Google's cpplint.py
